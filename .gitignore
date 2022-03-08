@@ -1,0 +1,11 @@
+.DS_Store
+.vs
+FileCryptionGUI.sln
+App.config
+Release
+MyForm.resx
+FileCryptionGUI.vcxproj.user
+FileCryptionGUI.vcxproj.filters
+FileCryptionGUI.vcxproj
+x64
+Release
