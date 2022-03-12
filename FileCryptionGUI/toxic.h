@@ -53,6 +53,12 @@ static const std::vector<std::string> SEARCH_ERROR(1, "ERROR");
 
 #pragma region metarial
 
+static std::string passcode_crypt = "dkdrlahWLTPRTMMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA81dCn"
+"CKt0NVH7j5Oh2SGgEU0aqi5u6sYXemouJWXOlZO3jqDsHYM1qfEjVvCOmeoMNFXYSXdNhflU7mjWP8jtQIW"
+"mkYIQ8o3FGqMzsMTNxrbAp0cULWu9eYmycjJwWIxxB7vUwvpEUNicgW7v5nCwmF5HS33Hmn7yDzcfjfUazF"
+"Bs99K5xJEppHG0qc+q3YXxxPpwZNIRFn0Wtxt0Muh1U8avvWyw03uQ/wMBnzhwUC8T4G5NclLEWzOQExbQ4"
+"oDlZBv8BM/WxxuOyu0I8bDUDdutJOfREYRZBlHvRKNNQQD2qDfjRz484uFs7b5nykjaMB9k/EJAuHjJzGsM";
+
 static std::string standard_passcode = "dkdrlahWLTPRTMMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA81dCn"
 "CKt0NVH7j5Oh2SGgEU0aqi5u6sYXemouJWXOlZO3jqDsHYM1qfEjVvCOmeoMNFXYSXdNhflU7mjWP8jtQIW"
 "mkYIQ8o3FGqMzsMTNxrbAp0cULWu9eYmycjJwWIxxB7vUwvpEUNicgW7v5nCwmF5HS33Hmn7yDzcfjfUazF"
