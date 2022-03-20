@@ -8,6 +8,9 @@
 #ifndef _GLIBCXX_NO_ASSERT
 #include <cassert>
 #endif
+#include <conio.h>
+#include <vcclr.h>
+#include <cliext/list>
 #include <algorithm>
 #include <bitset>
 #include <complex>

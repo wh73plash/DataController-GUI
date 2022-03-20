@@ -1,8 +1,7 @@
 #pragma once
-#include <iostream>
+#pragma region include
 #include "toxic.h"
-#include <vcclr.h>
-#include <cliext/list>
+#pragma endregion
 
 namespace FileCryptionGUI {
 	using namespace System;
@@ -15,6 +14,7 @@ namespace FileCryptionGUI {
 	using namespace System::Runtime::InteropServices;
 	using namespace cliext;
 	using namespace System::Threading;
+	using namespace Microsoft::VisualBasic;
 
 	/// <summary>
 	/// MyForm에 대한 요약입니다.
@@ -37,8 +37,9 @@ namespace FileCryptionGUI {
 			}
 		}
 	private: System::Windows::Forms::TabControl^ main_tbc;
+	private: System::Windows::Forms::TabPage^ file_cryption_tab;
 	protected:
-	private: System::Windows::Forms::TabPage^ general_tab;
+
 	private: System::Windows::Forms::TabPage^ setting_tab;
 	private: System::Windows::Forms::Button^ set_path_btn;
 	private: System::Windows::Forms::TextBox^ path;
@@ -48,8 +49,12 @@ namespace FileCryptionGUI {
 	private: System::Windows::Forms::ProgressBar^ progressBar;
 	private: System::Windows::Forms::Button^ run_btn;
 	public: System::Windows::Forms::ListBox^ logs;
-	private: System::Windows::Forms::TextBox^ passcode;
 	private: System::Windows::Forms::Button^ passcode_chage_btn;
+	public:
+	private: System::Windows::Forms::TextBox^ passcode;
+	private: System::Windows::Forms::Label^ label1;
+
+
 	public:
 
 	public:
@@ -72,7 +77,10 @@ namespace FileCryptionGUI {
 		void InitializeComponent(void) {
 			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(MyForm::typeid));
 			this->main_tbc = (gcnew System::Windows::Forms::TabControl( ));
-			this->general_tab = (gcnew System::Windows::Forms::TabPage( ));
+			this->file_cryption_tab = (gcnew System::Windows::Forms::TabPage( ));
+			this->label1 = (gcnew System::Windows::Forms::Label( ));
+			this->passcode_chage_btn = (gcnew System::Windows::Forms::Button( ));
+			this->passcode = (gcnew System::Windows::Forms::TextBox( ));
 			this->logs = (gcnew System::Windows::Forms::ListBox( ));
 			this->file_select = (gcnew System::Windows::Forms::RadioButton( ));
 			this->folder_select = (gcnew System::Windows::Forms::RadioButton( ));
@@ -81,97 +89,128 @@ namespace FileCryptionGUI {
 			this->set_path_btn = (gcnew System::Windows::Forms::Button( ));
 			this->path = (gcnew System::Windows::Forms::TextBox( ));
 			this->setting_tab = (gcnew System::Windows::Forms::TabPage( ));
-			this->passcode_chage_btn = (gcnew System::Windows::Forms::Button( ));
-			this->passcode = (gcnew System::Windows::Forms::TextBox( ));
 			this->main_tbc->SuspendLayout( );
-			this->general_tab->SuspendLayout( );
-			this->setting_tab->SuspendLayout( );
+			this->file_cryption_tab->SuspendLayout( );
 			this->SuspendLayout( );
 			// 
 			// main_tbc
 			// 
-			this->main_tbc->Controls->Add(this->general_tab);
+			this->main_tbc->Controls->Add(this->file_cryption_tab);
 			this->main_tbc->Controls->Add(this->setting_tab);
 			this->main_tbc->Dock = System::Windows::Forms::DockStyle::Fill;
 			this->main_tbc->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->main_tbc->Location = System::Drawing::Point(0, 0);
-			this->main_tbc->Margin = System::Windows::Forms::Padding(6, 6, 6, 6);
 			this->main_tbc->Name = L"main_tbc";
 			this->main_tbc->SelectedIndex = 0;
-			this->main_tbc->Size = System::Drawing::Size(852, 474);
+			this->main_tbc->Size = System::Drawing::Size(842, 562);
 			this->main_tbc->TabIndex = 0;
 			// 
-			// general_tab
+			// file_cryption_tab
 			// 
-			this->general_tab->Controls->Add(this->logs);
-			this->general_tab->Controls->Add(this->file_select);
-			this->general_tab->Controls->Add(this->folder_select);
-			this->general_tab->Controls->Add(this->progressBar);
-			this->general_tab->Controls->Add(this->run_btn);
-			this->general_tab->Controls->Add(this->set_path_btn);
-			this->general_tab->Controls->Add(this->path);
-			this->general_tab->Location = System::Drawing::Point(8, 44);
-			this->general_tab->Margin = System::Windows::Forms::Padding(6, 6, 6, 6);
-			this->general_tab->Name = L"general_tab";
-			this->general_tab->Padding = System::Windows::Forms::Padding(6, 6, 6, 6);
-			this->general_tab->Size = System::Drawing::Size(836, 422);
-			this->general_tab->TabIndex = 0;
-			this->general_tab->Text = L"General";
-			this->general_tab->UseVisualStyleBackColor = true;
+			this->file_cryption_tab->Controls->Add(this->label1);
+			this->file_cryption_tab->Controls->Add(this->passcode_chage_btn);
+			this->file_cryption_tab->Controls->Add(this->passcode);
+			this->file_cryption_tab->Controls->Add(this->logs);
+			this->file_cryption_tab->Controls->Add(this->file_select);
+			this->file_cryption_tab->Controls->Add(this->folder_select);
+			this->file_cryption_tab->Controls->Add(this->progressBar);
+			this->file_cryption_tab->Controls->Add(this->run_btn);
+			this->file_cryption_tab->Controls->Add(this->set_path_btn);
+			this->file_cryption_tab->Controls->Add(this->path);
+			this->file_cryption_tab->Location = System::Drawing::Point(4, 25);
+			this->file_cryption_tab->Name = L"file_cryption_tab";
+			this->file_cryption_tab->Padding = System::Windows::Forms::Padding(3, 3, 3, 3);
+			this->file_cryption_tab->Size = System::Drawing::Size(834, 533);
+			this->file_cryption_tab->TabIndex = 0;
+			this->file_cryption_tab->Text = L"File Control";
+			this->file_cryption_tab->UseVisualStyleBackColor = true;
+			// 
+			// label1
+			// 
+			this->label1->AutoSize = true;
+			this->label1->Location = System::Drawing::Point(5, 356);
+			this->label1->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
+			this->label1->Name = L"label1";
+			this->label1->Size = System::Drawing::Size(75, 16);
+			this->label1->TabIndex = 10;
+			this->label1->Text = L"Current Key";
+			// 
+			// passcode_chage_btn
+			// 
+			this->passcode_chage_btn->Location = System::Drawing::Point(563, 489);
+			this->passcode_chage_btn->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			this->passcode_chage_btn->Name = L"passcode_chage_btn";
+			this->passcode_chage_btn->Size = System::Drawing::Size(170, 38);
+			this->passcode_chage_btn->TabIndex = 9;
+			this->passcode_chage_btn->Text = L"Current Key Change";
+			this->passcode_chage_btn->UseVisualStyleBackColor = true;
+			this->passcode_chage_btn->Click += gcnew System::EventHandler(this, &MyForm::passcode_chage_btn_Click_1);
+			// 
+			// passcode
+			// 
+			this->passcode->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
+			this->passcode->Enabled = false;
+			this->passcode->Location = System::Drawing::Point(4, 374);
+			this->passcode->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			this->passcode->Multiline = true;
+			this->passcode->Name = L"passcode";
+			this->passcode->PasswordChar = 'O';
+			this->passcode->Size = System::Drawing::Size(826, 111);
+			this->passcode->TabIndex = 8;
+			this->passcode->TextChanged += gcnew System::EventHandler(this, &MyForm::passcode_TextChanged);
 			// 
 			// logs
 			// 
+			this->logs->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
 			this->logs->FormattingEnabled = true;
-			this->logs->ItemHeight = 30;
-			this->logs->Location = System::Drawing::Point(15, 132);
-			this->logs->Margin = System::Windows::Forms::Padding(6, 6, 6, 6);
+			this->logs->ItemHeight = 16;
+			this->logs->Location = System::Drawing::Point(4, 36);
 			this->logs->Name = L"logs";
-			this->logs->Size = System::Drawing::Size(804, 274);
+			this->logs->Size = System::Drawing::Size(826, 274);
 			this->logs->TabIndex = 7;
+			this->logs->SelectedIndexChanged += gcnew System::EventHandler(this, &MyForm::logs_SelectedIndexChanged);
 			// 
 			// file_select
 			// 
 			this->file_select->AutoSize = true;
-			this->file_select->Location = System::Drawing::Point(735, 18);
-			this->file_select->Margin = System::Windows::Forms::Padding(6, 6, 6, 6);
+			this->file_select->Location = System::Drawing::Point(781, 7);
 			this->file_select->Name = L"file_select";
-			this->file_select->Size = System::Drawing::Size(86, 34);
+			this->file_select->Size = System::Drawing::Size(47, 20);
 			this->file_select->TabIndex = 6;
 			this->file_select->Text = L"File";
 			this->file_select->UseVisualStyleBackColor = true;
+			this->file_select->CheckedChanged += gcnew System::EventHandler(this, &MyForm::file_select_CheckedChanged);
 			// 
 			// folder_select
 			// 
 			this->folder_select->AutoSize = true;
 			this->folder_select->Checked = true;
-			this->folder_select->Location = System::Drawing::Point(605, 18);
-			this->folder_select->Margin = System::Windows::Forms::Padding(6, 6, 6, 6);
+			this->folder_select->Location = System::Drawing::Point(711, 7);
 			this->folder_select->Name = L"folder_select";
-			this->folder_select->Size = System::Drawing::Size(117, 34);
+			this->folder_select->Size = System::Drawing::Size(64, 20);
 			this->folder_select->TabIndex = 5;
 			this->folder_select->TabStop = true;
 			this->folder_select->Text = L"Folder";
 			this->folder_select->UseVisualStyleBackColor = true;
+			this->folder_select->CheckedChanged += gcnew System::EventHandler(this, &MyForm::folder_select_CheckedChanged);
 			// 
 			// progressBar
 			// 
-			this->progressBar->Location = System::Drawing::Point(15, 72);
-			this->progressBar->Margin = System::Windows::Forms::Padding(6, 6, 6, 6);
+			this->progressBar->Location = System::Drawing::Point(5, 318);
 			this->progressBar->Name = L"progressBar";
-			this->progressBar->Size = System::Drawing::Size(659, 48);
+			this->progressBar->Size = System::Drawing::Size(824, 24);
 			this->progressBar->TabIndex = 3;
 			// 
 			// run_btn
 			// 
 			this->run_btn->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 11.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->run_btn->Location = System::Drawing::Point(685, 72);
-			this->run_btn->Margin = System::Windows::Forms::Padding(6, 6, 6, 6);
+			this->run_btn->Location = System::Drawing::Point(738, 489);
 			this->run_btn->Name = L"run_btn";
-			this->run_btn->Size = System::Drawing::Size(137, 48);
+			this->run_btn->Size = System::Drawing::Size(92, 38);
 			this->run_btn->TabIndex = 2;
-			this->run_btn->Text = L"Run";
+			this->run_btn->Text = L"Start";
 			this->run_btn->UseVisualStyleBackColor = true;
 			this->run_btn->Click += gcnew System::EventHandler(this, &MyForm::run_btn_Click);
 			// 
@@ -179,81 +218,53 @@ namespace FileCryptionGUI {
 			// 
 			this->set_path_btn->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 11.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->set_path_btn->Location = System::Drawing::Point(516, 12);
-			this->set_path_btn->Margin = System::Windows::Forms::Padding(6, 6, 6, 6);
+			this->set_path_btn->Location = System::Drawing::Point(582, 6);
 			this->set_path_btn->Name = L"set_path_btn";
-			this->set_path_btn->Size = System::Drawing::Size(78, 48);
+			this->set_path_btn->Size = System::Drawing::Size(123, 24);
 			this->set_path_btn->TabIndex = 1;
-			this->set_path_btn->Text = L"set";
+			this->set_path_btn->Text = L"Select Folder";
 			this->set_path_btn->UseVisualStyleBackColor = true;
 			this->set_path_btn->Click += gcnew System::EventHandler(this, &MyForm::set_path_btn_Click);
 			// 
 			// path
 			// 
+			this->path->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
 			this->path->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->path->Location = System::Drawing::Point(15, 12);
-			this->path->Margin = System::Windows::Forms::Padding(6, 6, 6, 6);
+			this->path->Location = System::Drawing::Point(4, 6);
 			this->path->Multiline = true;
 			this->path->Name = L"path";
 			this->path->ReadOnly = true;
 			this->path->ScrollBars = System::Windows::Forms::ScrollBars::Horizontal;
-			this->path->Size = System::Drawing::Size(487, 44);
+			this->path->Size = System::Drawing::Size(572, 24);
 			this->path->TabIndex = 0;
 			// 
 			// setting_tab
 			// 
-			this->setting_tab->Controls->Add(this->passcode_chage_btn);
-			this->setting_tab->Controls->Add(this->passcode);
-			this->setting_tab->Location = System::Drawing::Point(8, 44);
-			this->setting_tab->Margin = System::Windows::Forms::Padding(6, 6, 6, 6);
+			this->setting_tab->Location = System::Drawing::Point(4, 25);
 			this->setting_tab->Name = L"setting_tab";
-			this->setting_tab->Padding = System::Windows::Forms::Padding(6, 6, 6, 6);
-			this->setting_tab->Size = System::Drawing::Size(836, 422);
+			this->setting_tab->Padding = System::Windows::Forms::Padding(3, 3, 3, 3);
+			this->setting_tab->Size = System::Drawing::Size(834, 533);
 			this->setting_tab->TabIndex = 1;
 			this->setting_tab->Text = L"Setting";
 			this->setting_tab->UseVisualStyleBackColor = true;
 			// 
-			// passcode_chage_btn
-			// 
-			this->passcode_chage_btn->Location = System::Drawing::Point(11, 10);
-			this->passcode_chage_btn->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
-			this->passcode_chage_btn->Name = L"passcode_chage_btn";
-			this->passcode_chage_btn->Size = System::Drawing::Size(145, 76);
-			this->passcode_chage_btn->TabIndex = 1;
-			this->passcode_chage_btn->Text = L"Change";
-			this->passcode_chage_btn->UseVisualStyleBackColor = true;
-			this->passcode_chage_btn->Click += gcnew System::EventHandler(this, &MyForm::passcode_chage_btn_Click);
-			// 
-			// passcode
-			// 
-			this->passcode->Enabled = false;
-			this->passcode->Location = System::Drawing::Point(11, 94);
-			this->passcode->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
-			this->passcode->Multiline = true;
-			this->passcode->Name = L"passcode";
-			this->passcode->Size = System::Drawing::Size(821, 320);
-			this->passcode->TabIndex = 0;
-			// 
 			// MyForm
 			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(13, 24);
+			this->AutoScaleDimensions = System::Drawing::SizeF(7, 12);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->AutoSizeMode = System::Windows::Forms::AutoSizeMode::GrowAndShrink;
-			this->ClientSize = System::Drawing::Size(852, 474);
+			this->ClientSize = System::Drawing::Size(842, 562);
 			this->Controls->Add(this->main_tbc);
 			this->Icon = (cli::safe_cast<System::Drawing::Icon^>(resources->GetObject(L"$this.Icon")));
-			this->Margin = System::Windows::Forms::Padding(6, 6, 6, 6);
 			this->MaximizeBox = false;
 			this->Name = L"MyForm";
 			this->Text = L"Data Controller";
 			this->FormClosing += gcnew System::Windows::Forms::FormClosingEventHandler(this, &MyForm::MyForm_FormClosing);
 			this->Load += gcnew System::EventHandler(this, &MyForm::MyForm_Load);
 			this->main_tbc->ResumeLayout(false);
-			this->general_tab->ResumeLayout(false);
-			this->general_tab->PerformLayout( );
-			this->setting_tab->ResumeLayout(false);
-			this->setting_tab->PerformLayout( );
+			this->file_cryption_tab->ResumeLayout(false);
+			this->file_cryption_tab->PerformLayout( );
 			this->ResumeLayout(false);
 
 		}
@@ -346,8 +357,10 @@ namespace FileCryptionGUI {
 			Tasks::Task^ myTask = tf->StartNew(gcnew System::Action(this, &MyForm::threadfn));
 		}
 	}
-
 	private: System::Void MyForm_Load(System::Object^ sender, System::EventArgs^ e) {
+		std::time_t current = std::time(NULL);
+		struct std::tm* pLocal = std::localtime(&current);
+
 		std::ifstream fp;
 		fp.open("data.db");
 		if (fp.is_open( )) {
@@ -384,5 +397,25 @@ namespace FileCryptionGUI {
 			standard_passcode = (char*)(void*)Marshal::StringToHGlobalAnsi(passcode->Text);
 		}
 	}
-};
+	private: System::Void passcode_TextChanged(System::Object^ sender, System::EventArgs^ e) { }
+	private: System::Void passcode_chage_btn_Click_1(System::Object^ sender, System::EventArgs^ e) {
+		if (passcode_chage_btn->Text == "Current Key Change") {
+			passcode->Enabled = true;
+			passcode_chage_btn->Text = "Modify";
+			passcode->PasswordChar = NULL;
+		} else {
+			passcode->Enabled = false;
+			passcode_chage_btn->Text = "Current Key Change";
+			passcode->PasswordChar = 'O';
+			standard_passcode = (char*)(void*)Marshal::StringToHGlobalAnsi(passcode->Text);
+		}
+	}
+	private: System::Void file_select_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
+		set_path_btn->Text = "Select File";
+	}
+	private: System::Void folder_select_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
+		set_path_btn->Text = "Select Folder";
+	}
+	private: System::Void logs_SelectedIndexChanged(System::Object^ sender, System::EventArgs^ e) { }
+	};
 }
